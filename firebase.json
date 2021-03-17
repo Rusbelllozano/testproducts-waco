@@ -15,7 +15,7 @@
   },
   "firestore": {
     "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
+    "indexes": "n"
   },
   "remoteconfig": {
     "template": "remoteconfig.template.json"
