@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     root: {
-      maxWidth: 400,
+      Width: 250,
     },
     media: {
       height: 140,
@@ -36,10 +36,10 @@ const useStyles = makeStyles({
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
+            Edit
           </Button>
           <Button size="small" color="primary">
-            Learn More
+            Delete
           </Button>
         </CardActions>
       </Card>

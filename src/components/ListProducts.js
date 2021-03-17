@@ -4,7 +4,7 @@ function ListProducts(props) {
 console.log(props)
   return (
     <div>
-        <div>
+        <div style={{ display:'grid', gridAutoFlow:'column','gap':'20px', padding:'20px' }}>
         {
           props.products.map((product,index) => {
             return (
