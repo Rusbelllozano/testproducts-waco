@@ -1,22 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
-
+import db from './database/index'
+import ListProducts from './components/ListProducts'
+import React, { useState, useEffect } from 'react';
 function App() {
+  
+  const [products, setProducts] = useState([])
+  const fetchProducts = async () => {
+    const response = db.collection('products');
+    const data = await response.get();
+    data.docs.forEach(item => {
+      setProducts([...products, item.data()])
+    })
+  }
+  useEffect(() => {
+    fetchProducts();
+  },[])
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {
+          <ListProducts products={products}></ListProducts>
+        }
       </header>
     </div>
   );
