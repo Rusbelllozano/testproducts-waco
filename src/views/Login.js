@@ -62,7 +62,7 @@ const Login = ({ history }) => {
                     .signInWithEmailAndPassword(email.value, password.value);
                 history.push("/");
             } catch (error) {
-                alert('No coindicen el usuario y la contraseña');
+                alert('It does not match our records');
             }
         },
         [history]
