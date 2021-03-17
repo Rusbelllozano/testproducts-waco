@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "build",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -15,7 +15,7 @@
   },
   "firestore": {
     "rules": "firestore.rules",
-    "indexes": "n"
+    "indexes": "firestore.indexes.json"
   },
   "remoteconfig": {
     "template": "remoteconfig.template.json"
