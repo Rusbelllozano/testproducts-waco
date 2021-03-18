@@ -1,19 +1,19 @@
 // import React,{useState,useEffect} from 'react';
 import CardProduct from './CardProduct';
 function ListProducts(props) {
-console.log(props)
+  console.log(props)
   return (
     <div>
-        <div style={{ display:'grid', gridAutoFlow:'column','gap':'20px', padding:'20px' }}>
+      <div style={{ display: 'grid', gridAutoFlow: 'column', 'gap': '20px', padding: '20px' }}>
         {
-          props.products.map((product,index) => {
+          props.products.map((product, index) => {
             return (
-                <CardProduct key={index} product={product}/>
+              <CardProduct key={index} product={product} />
             )
           })
         }
-        </div>
-        
+      </div>
+
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import initFirebase  from '../database'
 import { makeStyles } from '@material-ui/core/styles';
-import { GitHub } from "@material-ui/icons";
+
 import {
     Input,
     Button,
@@ -11,8 +11,8 @@ import {
     FormControl,
     FormHelperText,
     InputLabel,
-    Icon
 } from '@material-ui/core';
+
 const useStyles = makeStyles({
   root: {
       maxWidth: 500,
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
       padding: '10px',
   },
   form: {
-      width:400,
+      width:300,
       padding: '20px',
       'display': 'flex',
       'flex-direction': 'column'
@@ -72,13 +72,6 @@ const SignUp = ({ history }) => {
                     <Link style={{ textAlign:'center',textDecoration: 'none', color:'#ff4a4a' }} to="/login">Already has an account Account?</Link>
                 </FormControl>
             </form>
-            <Button color="primary" variant="outlined">
-                SignIn With Google
-            </Button>
-            <Button color="primary" variant="outlined">
-            SignIn With GitHub 
-                <Icon component={GitHub}></Icon>
-            </Button>
         </Card>
         </div>
   );

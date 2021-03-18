@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import initFirebase from '../database/index'
 import { AuthContext } from "../auth";
 import { makeStyles } from '@material-ui/core/styles';
-import { GitHub } from "@material-ui/icons";
+import { GitHub, AccountCircle } from "@material-ui/icons";
 import {
     Input,
     Button,
@@ -13,7 +13,6 @@ import {
     FormControl,
     FormHelperText,
     InputLabel,
-    Icon
 } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -24,7 +23,7 @@ const useStyles = makeStyles({
         padding: '10px',
     },
     form: {
-        width: 400,
+        width: 300,
         padding: '20px',
         'display': 'flex',
         'flex-direction': 'column'
@@ -104,19 +103,22 @@ const Login = ({ history }) => {
                     <FormControl className={classes.Actionbutton}>
                         <Button type="submit" variant="contained" color="primary">
                             Log In
-                    </Button>
+                        </Button>
                         <Button color="secondary" variant="outlined">
                             <Link style={{ textDecoration: 'none', color: '#000' }} to="/signup">Create an Account</Link>
-
                         </Button>
                     </FormControl>
                 </form>
-                <Button onClick={handleExternalLogin} color="primary" variant="outlined">
+                <Button startIcon={<AccountCircle />} onClick={handleExternalLogin} color="primary" variant="outlined">
                     LogIn With Google
-            </Button>
-                <Button color="primary" onClick={handleExternalLoginGitHub} variant="outlined">
+                </Button>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    startIcon={<GitHub />}
+                    onClick={handleExternalLoginGitHub}
+                >
                     LogIn With GitHub
-                <Icon component={GitHub}></Icon>
                 </Button>
             </Card>
         </div>

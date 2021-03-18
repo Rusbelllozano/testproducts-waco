@@ -25,10 +25,10 @@ const useStyles = makeStyles({
 export default function MediaCard(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [name, setName] =useState(props.product.name)
-  const [price, setPrice] =useState(props.product.price)
-  const [description,setDescription] = useState(props.product.description)
-  const [stock,setStock] = useState(props.product.stock)
+  const [name, setName] = useState(props.product.name)
+  const [price, setPrice] = useState(props.product.price)
+  const [description, setDescription] = useState(props.product.description)
+  const [stock, setStock] = useState(props.product.stock)
   const db = initFirebase.firestore()
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,22 +37,22 @@ export default function MediaCard(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const editProduct = ()=>{
+  const editProduct = () => {
     db.collection('products').doc(props.product.id).set({
       name,
       price,
       description,
       stock
-    }).then(()=>{
+    }).then(() => {
       handleClose()
-      
+
     })
   }
-  const deleteProduct = ()=>{
+  const deleteProduct = () => {
     let confirmation = window.confirm('Are you sure to delete this product?')
-    if(confirmation){
+    if (confirmation) {
       db.collection('products').doc(props.product.id).delete().then(
-        ()=>{
+        () => {
           console.log('Borrado')
         }
       )
@@ -61,17 +61,12 @@ export default function MediaCard(props) {
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        {/* <CardMedia
-          className={classes.media}
-          image="https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-          title="Contemplative Reptile"
-        /> */}
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.product.name}            
+            {props.product.name}
           </Typography>
           <Typography variant="subtitle1" component="h2">
-          {props.product.description}
+            {props.product.description}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="h3">
             $ {props.product.price}
@@ -96,7 +91,7 @@ export default function MediaCard(props) {
             label="Name"
             type="text"
             value={name}
-            onChange={e =>{
+            onChange={e => {
               setName(e.target.value)
             }}
             fullWidth
@@ -108,7 +103,7 @@ export default function MediaCard(props) {
             label="Description"
             type="text"
             value={description}
-            onChange={e =>{
+            onChange={e => {
               setDescription(e.target.value)
             }}
             fullWidth
@@ -120,7 +115,7 @@ export default function MediaCard(props) {
             label="Price"
             type="text"
             value={price}
-            onChange={e =>{
+            onChange={e => {
               setPrice(e.target.value)
             }}
             fullWidth
@@ -132,10 +127,10 @@ export default function MediaCard(props) {
             label="stock"
             type="text"
             value={stock}
-            onChange={e =>{
+            onChange={e => {
               setStock(e.target.value)
             }}
-            fullWidth/>
+            fullWidth />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="secondary">

@@ -11,9 +11,6 @@ import {
     DialogTitle,
 } from '@material-ui/core';
 
-
-
-
 function Home() {
     const [products, setProducts] = useState([])
     const [nameNew, setNameNew] = useState('')
@@ -47,12 +44,12 @@ function Home() {
     useEffect(() => {
         fetchProducts();
     }, [])
-    if(products.length === 0){
-        return(
+    if (products.length === 0) {
+        return (
             <div className="App-main">
                 <h3>Loading Products</h3>
             </div>
-           
+
         )
     }
     return (
