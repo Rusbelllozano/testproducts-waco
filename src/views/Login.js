@@ -1,5 +1,6 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
+import firebase from 'firebase/app';
 import { Link } from "react-router-dom";
 import initFirebase from '../database/index'
 import { AuthContext } from "../auth";
@@ -23,35 +24,46 @@ const useStyles = makeStyles({
         padding: '10px',
     },
     form: {
-        width:400,
+        width: 400,
         padding: '20px',
         'display': 'flex',
         'flex-direction': 'column'
     },
-    container:{
-        'display':'grid',
-        'justify-content':'center'
+    container: {
+        'display': 'grid',
+        'justify-content': 'center'
     },
-    Actionbutton:{
-        'display':'grid',
-        'gap':'10px',
-        padding:'5px'
-      }
+    Actionbutton: {
+        'display': 'grid',
+        'gap': '10px',
+        padding: '5px'
+    }
 });
-// const providerGitHub = initFirebase.auth.GithubAuthProvider();
-//     const providerGoogle = new initFirebase.auth.GoogleAuthProvider()
-// const handleExternalLogin = 
-//         ()=>{
-//             alert('Ya casi va a estar')
-            // initFirebase
-            //         .auth().signInWithPopup(providerGoogle).then((res) => {
-            //     console.log(res.user)
-            //   }).catch((error) => {
-            //     console.log(error.message)
-            //   })
-        // }
+const providerGitHub = new firebase.auth.GithubAuthProvider();
+const providerGoogle = new firebase.auth.GoogleAuthProvider()
+
 const Login = ({ history }) => {
     const classes = useStyles();
+    const handleExternalLoginGitHub =
+        () => {
+            initFirebase
+                .auth().signInWithPopup(providerGitHub).then((res) => {
+                    console.log(res.user)
+                    history.push("/");
+                }).catch((error) => {
+                    console.log(error.message)
+                })
+        }
+    const handleExternalLogin =
+        () => {
+            initFirebase
+                .auth().signInWithPopup(providerGoogle).then((res) => {
+                    console.log(res.user)
+                    history.push("/");
+                }).catch((error) => {
+                    console.log(error.message)
+                })
+        }
     const handleLogin = useCallback(
         async event => {
             event.preventDefault();
@@ -78,35 +90,35 @@ const Login = ({ history }) => {
     return (
         <div className={classes.container}>
             <Card className={classes.root}>
-            <form className={classes.form} onSubmit={handleLogin}>
-                <h3>Log in -TestProduct Waco</h3>
-                <FormControl>
-                    <InputLabel htmlFor="email">Email address</InputLabel>
-                    <Input name="email" type="text" placeholder="Email" />
-                    <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-                </FormControl>
-                <FormControl>
-                    <InputLabel htmlFor="password">Password</InputLabel>
-                    <Input name="password" type="password" placeholder="Password" />
-                </FormControl>
-                <FormControl className={classes.Actionbutton}>
-                    <Button type="submit" variant="contained" color="primary">
-                        Log In
+                <form className={classes.form} onSubmit={handleLogin}>
+                    <h3>Log in -TestProduct Waco</h3>
+                    <FormControl>
+                        <InputLabel htmlFor="email">Email address</InputLabel>
+                        <Input name="email" type="text" placeholder="Email" />
+                        <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+                    </FormControl>
+                    <FormControl>
+                        <InputLabel htmlFor="password">Password</InputLabel>
+                        <Input name="password" type="password" placeholder="Password" />
+                    </FormControl>
+                    <FormControl className={classes.Actionbutton}>
+                        <Button type="submit" variant="contained" color="primary">
+                            Log In
                     </Button>
-                    <Button color="secondary" variant="outlined">
-                        <Link style={{ textDecoration: 'none', color:'#000' }} to="/signup">Create an Account</Link>
-                        
-                    </Button>
-                </FormControl>
-            </form>
-            <Button color="primary" variant="outlined">
-                LogIn With Google
+                        <Button color="secondary" variant="outlined">
+                            <Link style={{ textDecoration: 'none', color: '#000' }} to="/signup">Create an Account</Link>
+
+                        </Button>
+                    </FormControl>
+                </form>
+                <Button onClick={handleExternalLogin} color="primary" variant="outlined">
+                    LogIn With Google
             </Button>
-            <Button color="primary" variant="outlined">
-                LogIn With GitHub 
+                <Button color="primary" onClick={handleExternalLoginGitHub} variant="outlined">
+                    LogIn With GitHub
                 <Icon component={GitHub}></Icon>
-            </Button>
-        </Card>
+                </Button>
+            </Card>
         </div>
     );
 };

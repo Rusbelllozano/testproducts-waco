@@ -1,8 +1,7 @@
 import initFirebase from '../database'
 import ListProducts from '../components/ListProducts'
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import ExitToApp from '@material-ui/icons/ExitToApp';
-import { AuthContext } from "../auth";
 import {
     Button,
     TextField,
@@ -16,7 +15,6 @@ import {
 
 
 function Home() {
-    const { currentUser } = useContext(AuthContext);
     const [products, setProducts] = useState([])
     const [nameNew, setNameNew] = useState('')
     const [descriptionNew, setDescriptionNew] = useState('')
@@ -69,7 +67,6 @@ function Home() {
                     Sign out
                 </Button>
                 <h1>Home</h1>
-                <p>Logged as: {currentUser.email}</p>
                 <Button variant="contained" onClick={handleClickOpen} color="primary">Add product</Button>
                 <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                     <DialogTitle id="form-dialog-title">Add Product</DialogTitle>
